@@ -95,7 +95,7 @@ app.post('/recipe', uploadMiddleware.single('file') , async (req,res) => {
     });
 });
 
-app.put('/recipe', uploadMiddleware.single('file'), async (req, res) => {
+app.put('/recipe/:id', uploadMiddleware.single('file'), async (req, res) => {
     let newPath = null;
     if (req.file) {
       const { originalname, path } = req.file;

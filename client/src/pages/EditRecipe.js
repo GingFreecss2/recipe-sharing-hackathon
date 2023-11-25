@@ -4,8 +4,8 @@ import { Navigate, useParams } from "react-router-dom";
 export default function EditRecipe() {
     const { id } = useParams();
     const [name, setName] = useState('');
-    const [ingredients, setIngredients] = useState([]);
-    const [steps, setSteps] = useState([]);
+    const [ingredients, setIngredients] = useState('');
+    const [steps, setSteps] = useState('');
     const [prepTime, setPrepTime] = useState('');
     const [photo, setPhoto] = useState('');
     const [redirect, setRedirect] = useState(false);
@@ -15,8 +15,8 @@ export default function EditRecipe() {
             .then(response => {
                 response.json().then(recipeInfo => {
                     setName(recipeInfo.name);
-                    setIngredients(recipeInfo.ingredients);
-                    setSteps(recipeInfo.steps);
+                    setIngredients(recipeInfo.ingredients.join(', '));
+                    setSteps(recipeInfo.steps.join('\n'));
                     setPrepTime(recipeInfo.prepTime);
                 });
             });
@@ -27,8 +27,8 @@ export default function EditRecipe() {
 
         const data = new FormData();
         data.set('name', name);
-        data.set('ingredients', JSON.stringify(ingredients));
-        data.set('steps', JSON.stringify(steps));
+        data.set('ingredients', JSON.stringify(ingredients.split(', ').map(item => item.trim())));
+        data.set('steps', JSON.stringify(steps.split('\n').map(step => step.trim())));
         data.set('prepTime', prepTime);
         data.set('id', id);
 
@@ -59,12 +59,12 @@ export default function EditRecipe() {
 
             <div>
                 <label>Ingredients:</label>
-                <textarea placeholder="Enter ingredients (comma-separated)" value={ingredients} onChange={ev => setIngredients(ev.target.value.split(','))}></textarea>
+                <textarea placeholder="Enter ingredients (comma-separated)" value={ingredients} onChange={ev => setIngredients(ev.target.value)}></textarea>
             </div>
 
             <div>
                 <label>Steps:</label>
-                <textarea placeholder="Enter steps (each on a new line)" value={steps} onChange={ev => setSteps(ev.target.value.split('\n'))}></textarea>
+                <textarea placeholder="Enter steps (each on a new line)" value={steps} onChange={ev => setSteps(ev.target.value)}></textarea>
             </div>
 
             <button style={{ marginTop: '5px' }}>Update Recipe</button>
