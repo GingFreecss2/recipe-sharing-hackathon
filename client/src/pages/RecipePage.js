@@ -27,6 +27,7 @@ export default function RecipePage() {
             <div className="top-info" style={{ textAlign: 'center', marginTop: '10px' }}>
                 <div className="author">
                     Written by {recipeInfo.author.username} 
+
                 </div>
                 <time>{format(new Date(recipeInfo.createdAt), 'MMM d, yyyy')}</time>
                 {userInfo.id === recipeInfo.author._id && (

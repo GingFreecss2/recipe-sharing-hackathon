@@ -72,7 +72,7 @@ app.post('/logout', (req,res) => {
     res.cookie('token', '').json('ok');
 });
 
-app.post('/recipe', uploadMiddleware.single('file') , async (req,res) => {
+ app.post('/recipe', uploadMiddleware.single('file') , async (req,res) => {
     const {originalname, path} = req.file;
     const parts = originalname.split('.');
     const ext = parts[parts.length - 1];
@@ -146,7 +146,29 @@ app.get('/recipe/:id', async (req,res) => {
     res.json(recipeDoc);
 })
 
+// app.get('/recipe/:id', async (req, res) => {
+//     const {id} = req.params;
+//     const {token} = req.cookies;
+ 
+//     if (token) {
+//         jwt.verify(token, secret, {}, async (err, info) => {
+//             if (err) {
+//                 return res.status(401).json({ error: 'Invalid token' });
+//             }
+ 
+//             const recipeDoc = await Recipe.findById(id).populate('author', ['username']);
+//             res.json(recipeDoc);
+//         });
+//     } else {
+//         const recipeDoc = await Recipe.findById(id);
+//         res.json(recipeDoc);
+//     }
+//  });
+ 
+ 
+
 //Search for Recipes using name, or ingredients or prep time
+// Didn't have enough time to implement search functionality
 app.get('/recipes/search', async (req, res) => {
     const { query } = req.query;
 
