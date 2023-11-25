@@ -29,6 +29,24 @@ Welcome to the Recipe Sharing App! This is a web application built using JavaScr
 - View recipes posted by other users
 - Responsive design for mobile and desktop devices
 
+## Screenshots
+
+### Main Page
+![Main Page](screenshots/main.png)
+### Recipe Page
+![Home Page](screenshots/recipepage.png)
+### Create Recipe Page
+![Home Page](screenshots/createrecipe.png)
+### Login Page
+![Home Page](screenshots/login.png)
+### Register Page
+![Home Page](screenshots/register.png)
+### Edit Page
+![Home Page](screenshots/editrecipe.png)
+### Data on DB 
+![Home Page](screenshots/recipesonthedb.png)
+
+
 ## Technologies Used
 - React
 - Express
